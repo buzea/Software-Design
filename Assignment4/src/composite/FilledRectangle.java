@@ -3,27 +3,24 @@
  * and open the template in the editor.
  */
 
-package Composite;
+package composite;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
-/**
- *
- * @author Mihai
- */
-public class FilledOval implements Shape{
 
-    private Graphics g;
+public class FilledRectangle implements Shape{
+
+
     private int x1;
     private int x2;
     private int y1;
     private int y2;
     private Color color;
 
-    public FilledOval(Graphics g,int x1, int y1, int x2, int y2, Color color)
+    public FilledRectangle(int x1, int y1, int x2, int y2, Color color)
     {
-        this.g = g;
+
         this.x1 = x1;
         this.x2 = x2;
         this.y1 = y1;
@@ -31,6 +28,7 @@ public class FilledOval implements Shape{
         this.color = color;
     }
 
+    @Override
     public void drawShape(Graphics dragGraphics) {
         int x, y;  // Top left corner of rectangle that contains the figure.
          int w, h;  // Width and height of rectangle that contains the figure.
@@ -50,12 +48,28 @@ public class FilledOval implements Shape{
             y = y1;
             h = y2 - y1;
          }
-         dragGraphics.setColor(color);
-        dragGraphics.fillOval(x, y, w, h);
+        dragGraphics.setColor(color);
+        dragGraphics.fillRect(x, y, w, h);
     }
 
-    public Shape[] explodeShape() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+	@Override
+	public void add(Shape shape) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void remove(Shape shape) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Shape getChild(int number) {
+		return null;
+		
+	}
+
+   
 
 }

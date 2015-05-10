@@ -3,27 +3,22 @@
  * and open the template in the editor.
  */
 
-package Composite;
+package composite;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
-/**
- *
- * @author Mihai
- */
-public class RectangleC implements Shape{
 
-    private Graphics g;
+public class Oval implements Shape{
+
     private int x1;
     private int x2;
     private int y1;
     private int y2;
     private Color color;
 
-    public RectangleC(Graphics g,int x1, int y1, int x2, int y2, Color color)
+    public Oval(int x1, int y1, int x2, int y2, Color color)
     {
-        this.g = g;
         this.x1 = x1;
         this.x2 = x2;
         this.y1 = y1;
@@ -51,11 +46,27 @@ public class RectangleC implements Shape{
             h = y2 - y1;
          }
         dragGraphics.setColor(color);
-        dragGraphics.drawRect(x, y, w, h);
+        dragGraphics.drawOval(x, y, w, h);
     }
 
-    public Shape[] explodeShape() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+	@Override
+	public void add(Shape shape) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void remove(Shape shape) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Shape getChild(int number) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+ 
 
 }

@@ -3,27 +3,23 @@
  * and open the template in the editor.
  */
 
-package Composite;
+package composite;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
-/**
- *
- * @author Mihai
- */
-public class RoundRectangle implements Shape{
 
-    private Graphics g;
+public class FilledRoundRectangle implements Shape{
+
     private int x1;
     private int x2;
     private int y1;
     private int y2;
     private Color color;
 
-    public RoundRectangle(Graphics g,int x1, int y1, int x2, int y2, Color color)
+    public FilledRoundRectangle(int x1, int y1, int x2, int y2, Color color)
     {
-        this.g = g;
+
         this.x1 = x1;
         this.x2 = x2;
         this.y1 = y1;
@@ -31,6 +27,7 @@ public class RoundRectangle implements Shape{
         this.color = color;
     }
 
+    @Override
     public void drawShape(Graphics dragGraphics) {
         int x, y;  // Top left corner of rectangle that contains the figure.
          int w, h;  // Width and height of rectangle that contains the figure.
@@ -51,11 +48,27 @@ public class RoundRectangle implements Shape{
             h = y2 - y1;
          }
         dragGraphics.setColor(color);
-        dragGraphics.drawRoundRect(x, y, w, h, 20, 20);
+        dragGraphics.fillRoundRect(x, y, w, h, 20, 20);
     }
 
-    public Shape[] explodeShape() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+	@Override
+	public void add(Shape shape) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void remove(Shape shape) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Shape getChild(int number) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+   
 
 }

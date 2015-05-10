@@ -3,27 +3,21 @@
  * and open the template in the editor.
  */
 
-package Composite;
+package composite;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
-/**
- *
- * @author Mihai
- */
-public class FilledRectangle implements Shape{
+public class RoundRectangle implements Shape{
 
-    private Graphics g;
     private int x1;
     private int x2;
     private int y1;
     private int y2;
     private Color color;
 
-    public FilledRectangle(Graphics g,int x1, int y1, int x2, int y2, Color color)
+    public RoundRectangle(int x1, int y1, int x2, int y2, Color color)
     {
-        this.g = g;
         this.x1 = x1;
         this.x2 = x2;
         this.y1 = y1;
@@ -51,11 +45,27 @@ public class FilledRectangle implements Shape{
             h = y2 - y1;
          }
         dragGraphics.setColor(color);
-        dragGraphics.fillRect(x, y, w, h);
+        dragGraphics.drawRoundRect(x, y, w, h, 20, 20);
     }
 
-    public Shape[] explodeShape() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+	@Override
+	public void add(Shape shape) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void remove(Shape shape) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Shape getChild(int number) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 }
