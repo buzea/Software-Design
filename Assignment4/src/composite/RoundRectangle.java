@@ -8,7 +8,7 @@ package composite;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class RoundRectangle implements Shape{
+public class RoundRectangle extends Shape{
 
     private int x1;
     private int x2;

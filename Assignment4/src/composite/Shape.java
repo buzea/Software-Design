@@ -9,15 +9,21 @@ import java.awt.Graphics;
 
 
 
-public interface Shape {
+public abstract class Shape {
 
 	
-	public void drawShape(Graphics dragGraphics);
+	public abstract void drawShape(Graphics dragGraphics);
 	
-	public void add(Shape shape);
+	public void add(Shape shape){
+		//do nothing by default
+	}
 	
-	public void remove(Shape shape);
+	public void remove(Shape shape){
+		//do nothing by default
+	}
 	
-	public Shape getChild(int number);
+	public Shape getChild(int number){
+		return null;
+	}
 
 }

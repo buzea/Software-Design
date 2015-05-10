@@ -9,7 +9,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 
-public class FilledRectangle implements Shape{
+public class FilledRectangle extends Shape{
 
 
     private int x1;

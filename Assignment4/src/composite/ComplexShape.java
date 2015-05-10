@@ -9,7 +9,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComplexShape implements Shape {
+public class ComplexShape extends Shape {
 
 	private List<Shape> list;
 

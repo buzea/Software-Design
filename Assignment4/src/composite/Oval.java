@@ -9,7 +9,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 
-public class Oval implements Shape{
+public class Oval extends Shape{
 
     private int x1;
     private int x2;

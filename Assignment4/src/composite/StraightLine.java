@@ -8,7 +8,7 @@ package composite;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class StraightLine implements Shape{
+public class StraightLine extends Shape{
 
     private int x1;
     private int x2;
@@ -47,6 +47,8 @@ public class StraightLine implements Shape{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 
 
