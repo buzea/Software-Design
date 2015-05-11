@@ -12,6 +12,7 @@ public class Canvas extends JPanel {
 
 	private static final long serialVersionUID = -4471075989653608834L;
 	private int x,y;
+	private Color color;
 	
 	private class MyMouseListener implements MouseListener,MouseMotionListener{
 
@@ -71,13 +72,22 @@ public class Canvas extends JPanel {
 		MyMouseListener ml = new MyMouseListener();
 		addMouseListener(ml);
 		addMouseMotionListener(ml);
+		color=Color.BLACK;
 	}
 	
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
 	@Override
 	public void paintComponent(Graphics g){
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, getWidth(), getHeight());
-		g.setColor(Color.BLACK);
+		g.setColor(color);
 		g.fillRect(x, y, 10, 10);
 	}
 

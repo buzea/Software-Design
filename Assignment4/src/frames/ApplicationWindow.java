@@ -84,9 +84,9 @@ public class ApplicationWindow {
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(shapeBox, 0, 133, Short.MAX_VALUE)
-						.addComponent(lblShape, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(shapeBox, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblShape, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)
 						.addComponent(colorPanel, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
@@ -156,18 +156,21 @@ public class ApplicationWindow {
 			public void stateChanged(ChangeEvent arg0) {
 				selectedColor = new Color(sliderRed.getValue(), sliderGreen.getValue(), sliderBlue.getValue());
 				showColor.setBackground(selectedColor);
+				canvas.setColor(selectedColor);
 			}
 		});
 		sliderGreen.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				selectedColor = new Color(sliderRed.getValue(), sliderGreen.getValue(), sliderBlue.getValue());
 				showColor.setBackground(selectedColor);
+				canvas.setColor(selectedColor);
 			}
 		});
 		sliderBlue.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				selectedColor = new Color(sliderRed.getValue(), sliderGreen.getValue(), sliderBlue.getValue());
 				showColor.setBackground(selectedColor);
+				canvas.setColor(selectedColor);
 			}
 		});
 		
