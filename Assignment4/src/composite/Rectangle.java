@@ -9,7 +9,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 
-public class RectangleC extends Shape{
+public class Rectangle extends Shape{
 
     private int x1;
     private int x2;
@@ -17,7 +17,7 @@ public class RectangleC extends Shape{
     private int y2;
     private Color color;
 
-    public RectangleC(int x1, int y1, int x2, int y2, Color color)
+    public Rectangle(int x1, int y1, int x2, int y2, Color color)
     {
         this.x1 = x1;
         this.x2 = x2;

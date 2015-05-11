@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 
@@ -12,7 +13,7 @@ public class Canvas extends JPanel {
 	private static final long serialVersionUID = -4471075989653608834L;
 	private int x,y;
 	
-	private class MyMouseListener implements MouseListener{
+	private class MyMouseListener implements MouseListener,MouseMotionListener{
 
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
@@ -46,11 +47,30 @@ public class Canvas extends JPanel {
 			// TODO Auto-generated method stub
 			
 		}
+
+		@Override
+		public void mouseDragged(MouseEvent e) {
+			x=e.getX();
+			y=e.getY();
+			repaint();
+			
+		}
+
+		@Override
+		public void mouseMoved(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		
 		
 	}
 
 	public Canvas() {
-		addMouseListener(new MyMouseListener());
+		setBackground(Color.WHITE);
+		MyMouseListener ml = new MyMouseListener();
+		addMouseListener(ml);
+		addMouseMotionListener(ml);
 	}
 	
 	@Override
