@@ -5,8 +5,11 @@
 
 package composite;
 
+import iterators.CompositeIterator;
+
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ComplexShape extends Shape {
@@ -39,6 +42,11 @@ public class ComplexShape extends Shape {
 	public Shape getChild(int number) {
 		return list.get(number);
 
+	}
+
+	@Override
+	public Iterator<Shape> createIterator() {
+		return new CompositeIterator<Shape>(list.iterator());
 	}
 
 }

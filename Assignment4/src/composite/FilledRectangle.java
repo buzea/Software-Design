@@ -5,8 +5,11 @@
 
 package composite;
 
+import iterators.NullIterator;
+
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Iterator;
 
 
 public class FilledRectangle extends Shape{
@@ -52,22 +55,10 @@ public class FilledRectangle extends Shape{
         dragGraphics.fillRect(x, y, w, h);
     }
 
+	
 	@Override
-	public void add(Shape shape) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void remove(Shape shape) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Shape getChild(int number) {
-		return null;
-		
+	public Iterator<Shape> createIterator() {
+		return new NullIterator<Shape>();
 	}
 
    

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -14,22 +15,18 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JScrollPane;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
-import composite.Shape;
-
-import javax.swing.JSlider;
 import javax.swing.JPanel;
-
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.factories.FormFactory;
-
-import javax.swing.event.ChangeListener;
+import javax.swing.JScrollPane;
+import javax.swing.JSlider;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.event.ChangeEvent;
-import javax.swing.JButton;
+import javax.swing.event.ChangeListener;
+
+import com.jgoodies.forms.factories.FormFactory;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.RowSpec;
+import composite.Shape;
 
 public class ApplicationWindow {
 
@@ -91,6 +88,7 @@ public class ApplicationWindow {
 					sliderRed.setValue(selectedColor.getRed());
 					sliderGreen.setValue(selectedColor.getGreen());
 					sliderBlue.setValue(selectedColor.getBlue());
+				
 			}
 		});
 		

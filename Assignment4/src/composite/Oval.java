@@ -5,8 +5,11 @@
 
 package composite;
 
+import iterators.NullIterator;
+
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Iterator;
 
 
 public class Oval extends Shape{
@@ -49,24 +52,10 @@ public class Oval extends Shape{
         dragGraphics.drawOval(x, y, w, h);
     }
 
-	@Override
-	public void add(Shape shape) {
-		// TODO Auto-generated method stub
-		
+    @Override
+	public Iterator<Shape> createIterator() {
+		return new NullIterator<Shape>();
 	}
-
-	@Override
-	public void remove(Shape shape) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Shape getChild(int number) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
  
 
 }
