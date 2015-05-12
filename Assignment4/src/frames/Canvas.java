@@ -54,7 +54,6 @@ public class Canvas extends JPanel {
 
 		@Override
 		public void mousePressed(MouseEvent arg0) {
-			// TODO Auto-generated method stub
 			x1 = arg0.getX();
 			y1 = arg0.getY();
 			if (currentShapeType.equals(BasicShapeType.FREE_DRAWING)) {

@@ -13,6 +13,7 @@ public class CompositeIterator<E> implements Iterator<E> {
 		stack = new Stack<Iterator<Shape>>();
 	}
 	public CompositeIterator(Iterator<Shape> iterator) {
+		//TODO Use Iterator
 		stack = new Stack<Iterator<Shape>>();
 		stack.push(iterator);
 	}
