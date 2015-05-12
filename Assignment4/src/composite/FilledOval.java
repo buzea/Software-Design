@@ -15,7 +15,11 @@ import java.util.Iterator;
 public class FilledOval extends Shape{
 
 
-    private int x1;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4745012335321275587L;
+	private int x1;
     private int x2;
     private int y1;
     private int y2;

@@ -13,7 +13,11 @@ import java.util.Iterator;
 
 public class StraightLine extends Shape{
 
-    private int x1;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -5793967248688161375L;
+	private int x1;
     private int x2;
     private int y1;
     private int y2;

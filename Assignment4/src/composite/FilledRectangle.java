@@ -15,7 +15,11 @@ import java.util.Iterator;
 public class FilledRectangle extends Shape{
 
 
-    private int x1;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3400746936562729010L;
+	private int x1;
     private int x2;
     private int y1;
     private int y2;

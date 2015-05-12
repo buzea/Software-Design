@@ -14,6 +14,10 @@ import java.util.List;
 
 public class ComplexShape extends Shape {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 43331098905157714L;
 	private List<Shape> list;
 
 	public ComplexShape() {
@@ -48,5 +52,11 @@ public class ComplexShape extends Shape {
 	public Iterator<Shape> createIterator() {
 		return new CompositeIterator<Shape>(list.iterator());
 	}
+
+	public void clear() {
+		list.clear();
+	}
+	
+	
 
 }

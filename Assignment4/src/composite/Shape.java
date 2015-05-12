@@ -6,13 +6,18 @@
 package composite;
 
 import java.awt.Graphics;
+import java.io.Serializable;
 import java.util.Iterator;
 
 
 
-public abstract class Shape {
-
+public abstract class Shape implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2014114493787232449L;
+
 	public abstract void drawShape(Graphics dragGraphics);
 	
 	public abstract Iterator<Shape> createIterator();

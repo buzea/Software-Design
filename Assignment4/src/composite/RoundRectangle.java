@@ -13,7 +13,11 @@ import java.util.Iterator;
 
 public class RoundRectangle extends Shape{
 
-    private int x1;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8467187036477754335L;
+	private int x1;
     private int x2;
     private int y1;
     private int y2;
@@ -48,7 +52,7 @@ public class RoundRectangle extends Shape{
             h = y2 - y1;
          }
         dragGraphics.setColor(color);
-        dragGraphics.drawRoundRect(x, y, w, h, 20, 20);
+        dragGraphics.drawRoundRect(x, y, w, h, 30, 30);
     }
 
     @Override

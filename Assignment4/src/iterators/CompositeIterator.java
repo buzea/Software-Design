@@ -6,7 +6,7 @@ import java.util.Stack;
 import composite.ComplexShape;
 import composite.Shape;
 
-public class CompositeIterator<Shape> implements Iterator<Shape> {
+public class CompositeIterator<E> implements Iterator<E> {
 	private Stack<Iterator<Shape>> stack;
 	
 	public CompositeIterator() {
@@ -35,16 +35,18 @@ public class CompositeIterator<Shape> implements Iterator<Shape> {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Shape next() {
+	public E next() {
 		if(hasNext()){
 			Iterator<Shape> iterator = stack.peek();
 			Shape shape = iterator.next();
 			if(shape instanceof ComplexShape){
 				ComplexShape complexShape =(ComplexShape) shape;
-				stack.push((Iterator<Shape>) complexShape.createIterator());
+				stack.push(complexShape.createIterator());
 			}
-			return shape;
+			
+			return (E) shape;
 			
 			
 		}

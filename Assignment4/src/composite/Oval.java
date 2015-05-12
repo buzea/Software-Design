@@ -14,7 +14,11 @@ import java.util.Iterator;
 
 public class Oval extends Shape{
 
-    private int x1;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1154338135621760919L;
+	private int x1;
     private int x2;
     private int y1;
     private int y2;

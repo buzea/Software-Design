@@ -2,7 +2,7 @@ package iterators;
 
 import java.util.Iterator;
 
-public class NullIterator<Shape> implements Iterator<Shape> {
+public class NullIterator<E> implements Iterator<E> {
 
 	@Override
 	public boolean hasNext() {
@@ -10,7 +10,7 @@ public class NullIterator<Shape> implements Iterator<Shape> {
 	}
 
 	@Override
-	public Shape next() {
+	public E next() {
 		return null;
 	}
 	
