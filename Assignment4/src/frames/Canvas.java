@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import composite.ComplexShape;
 import composite.FilledOval;
 import composite.FilledRectangle;
+import composite.FramedShape;
 import composite.FreeDrawing;
 import composite.Oval;
 import composite.Rectangle;
@@ -31,6 +32,7 @@ public class Canvas extends JPanel {
 	private ComplexShape scene;
 	private int dragShapeSize;
 	private BasicStroke stroke;
+	private boolean frameScene;
 
 	public static enum BasicShapeType {
 		FILLED_OVAL, FILLED_RECTANGLE, FILLED_ROUND_RECTANGLE, FREE_DRAWING, OVAL, RECTANGLE, ROUND_RECTANGLE, LINE
@@ -113,8 +115,9 @@ public class Canvas extends JPanel {
 		cursor = toolkit.createCustomCursor(image, new Point(0, 0), "pen");
 		scene = new ComplexShape();
 		currentShapeType = BasicShapeType.FILLED_OVAL;
-		dragShapeSize=10;
+		dragShapeSize = 10;
 		stroke = new BasicStroke(5);
+		frameScene = false;
 
 	}
 
@@ -160,9 +163,14 @@ public class Canvas extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		Graphics2D g2d=(Graphics2D)g;
+		Graphics2D g2d = (Graphics2D) g;
 		g2d.setStroke(stroke);
-		scene.drawShape(g2d);
+		if (!frameScene) {
+			scene.drawShape(g2d);
+		}else{
+			FramedShape framedScene = new FramedShape(scene);
+			framedScene.drawShape(g2d);
+		}
 
 		if (uncompletedShape != null) {
 			uncompletedShape.drawShape(g);
@@ -174,22 +182,27 @@ public class Canvas extends JPanel {
 	}
 
 	public void addDropShape(String label) {
-		switch (label){
-		case "Circle": 
-			scene.add(new Oval(x2-dragShapeSize/2, y2-dragShapeSize/2, x2+dragShapeSize/2, y2+dragShapeSize/2, color));
+		switch (label) {
+		case "Circle":
+			scene.add(new Oval(x2 - dragShapeSize / 2, y2 - dragShapeSize / 2,
+					x2 + dragShapeSize / 2, y2 + dragShapeSize / 2, color));
 			break;
-		case "Filled Circle": 
-			scene.add(new FilledOval(x2-dragShapeSize/2, y2-dragShapeSize/2, x2+dragShapeSize/2, y2+dragShapeSize/2, color));
+		case "Filled Circle":
+			scene.add(new FilledOval(x2 - dragShapeSize / 2, y2 - dragShapeSize
+					/ 2, x2 + dragShapeSize / 2, y2 + dragShapeSize / 2, color));
 			break;
-		case "Square": 
-			scene.add(new Rectangle(x2-dragShapeSize/2, y2-dragShapeSize/2, x2+dragShapeSize/2, y2+dragShapeSize/2, color));
+		case "Square":
+			scene.add(new Rectangle(x2 - dragShapeSize / 2, y2 - dragShapeSize
+					/ 2, x2 + dragShapeSize / 2, y2 + dragShapeSize / 2, color));
 			break;
-		case "Filled Square": 
-			scene.add(new FilledRectangle(x2-dragShapeSize/2, y2-dragShapeSize/2, x2+dragShapeSize/2, y2+dragShapeSize/2, color));
+		case "Filled Square":
+			scene.add(new FilledRectangle(x2 - dragShapeSize / 2, y2
+					- dragShapeSize / 2, x2 + dragShapeSize / 2, y2
+					+ dragShapeSize / 2, color));
 			break;
 		}
 		repaint();
-		
+
 	}
 
 	public int getX2() {
@@ -228,33 +241,20 @@ public class Canvas extends JPanel {
 	public void clearScene() {
 		scene.clear();
 		repaint();
-		
-	}
-	
-	public void setBurshSize(int size){
-		stroke=new BasicStroke(size);
+
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public void setBurshSize(int size) {
+		stroke = new BasicStroke(size);
+	}
 
+	public boolean isFrameScene() {
+		return frameScene;
+	}
+
+	public void setFrameScene(boolean frameScene) {
+		this.frameScene = frameScene;
+		repaint();
+	}
 
 }

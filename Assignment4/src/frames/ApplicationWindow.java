@@ -50,6 +50,7 @@ import com.jgoodies.forms.layout.RowSpec;
 import composite.ComplexShape;
 
 import frames.Canvas.BasicShapeType;
+import javax.swing.JToggleButton;
 
 public class ApplicationWindow {
 
@@ -61,6 +62,8 @@ public class ApplicationWindow {
 	private Canvas canvas;
 	private JLabel lblCircle;
 	private JPanel dragShapesPanel;
+	private JToggleButton tglbtnFrameToggle;
+
 
 	/**
 	 * Launch the application.
@@ -92,13 +95,13 @@ public class ApplicationWindow {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 618, 462);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 		canvas = new Canvas();
 		new MyDropTargetListener(canvas);
 
 		JLabel lblShape = new JLabel("Shape:");
 		
 		shapeBox = new JComboBox<BasicShapeType>();
+		//TODO shapeBox
 		shapeBox = new JComboBox<BasicShapeType>(Canvas.BasicShapeType.values());
 		
 		shapeBox.addActionListener(new ActionListener() {
@@ -130,20 +133,29 @@ public class ApplicationWindow {
 		dragShapesPanel = new JPanel();
 		
 		JPanel panel = new JPanel();
+		
+		tglbtnFrameToggle = new JToggleButton("Frame Toggle");
+		tglbtnFrameToggle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				canvas.setFrameScene(tglbtnFrameToggle.isSelected());
+			}
+		});
+		
 
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+						.addGroup(Alignment.LEADING, groupLayout.createParallelGroup(Alignment.LEADING, false)
 							.addComponent(shapeBox, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
 							.addComponent(lblShape, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)
 							.addComponent(dragShapesPanel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addComponent(colorPanel, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)
-							.addComponent(btnChoose, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)))
+							.addComponent(btnChoose, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
+						.addComponent(tglbtnFrameToggle, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
 					.addGap(6)
 					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
 					.addGap(8))
@@ -165,7 +177,9 @@ public class ApplicationWindow {
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(dragShapesPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addGap(7)
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(tglbtnFrameToggle)))
 					.addContainerGap())
 		);
 		panel.setLayout(new GridLayout(2, 1, 0, 0));
@@ -175,12 +189,13 @@ public class ApplicationWindow {
 		panel.add(lblBrushSize);
 		
 		JSlider slider = new JSlider();
+		slider.setMinimum(1);
 		slider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				canvas.setBurshSize(slider.getValue());
 			}
 		});
-		slider.setValue(5);
+		slider.setValue(1);
 		slider.setMaximum(10);
 		panel.add(slider);
 		dragShapesPanel.setLayout(new FormLayout(new ColumnSpec[] {

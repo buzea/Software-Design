@@ -34,5 +34,7 @@ public abstract class Shape implements Serializable {
 		return null;
 	}
 	
+	public abstract Boundary getBoundaries();
+	
 
 }

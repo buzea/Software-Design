@@ -64,7 +64,28 @@ public class FilledRectangle extends Shape{
 	public Iterator<Shape> createIterator() {
 		return new NullIterator<Shape>();
 	}
-
+	@Override
+	public Boundary getBoundaries() {
+		int x,y,w,h;
+		if (x1 >= x2) {  // x2 is left edge
+            x = x2;
+            w = x1;
+         }
+         else {          // x1 is left edge
+            x = x1;
+            w = x2;
+         }
+         if (y1 >= y2) {  // y2 is top edge
+            y = y2;
+            h = y1;
+         }
+         else {          // y1 is top edge.
+            y = y1;
+            h = y2;
+         }
+         
+         return new Boundary(x, w, y, h);
+	}
    
 
 }
