@@ -2,6 +2,7 @@ package frames;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.datatransfer.DataFlavor;
@@ -34,12 +35,15 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.JSlider;
 import javax.swing.JSpinner;
+import javax.swing.JToggleButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.TransferHandler;
+import javax.swing.border.EtchedBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -50,7 +54,6 @@ import com.jgoodies.forms.layout.RowSpec;
 import composite.ComplexShape;
 
 import frames.Canvas.BasicShapeType;
-import javax.swing.JToggleButton;
 
 public class ApplicationWindow {
 
@@ -131,6 +134,7 @@ public class ApplicationWindow {
 		});
 
 		dragShapesPanel = new JPanel();
+		dragShapesPanel.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
 		
 		JPanel panel = new JPanel();
 		
@@ -147,15 +151,15 @@ public class ApplicationWindow {
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-						.addGroup(Alignment.LEADING, groupLayout.createParallelGroup(Alignment.LEADING, false)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 							.addComponent(shapeBox, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
 							.addComponent(lblShape, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)
 							.addComponent(dragShapesPanel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addComponent(colorPanel, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)
 							.addComponent(btnChoose, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
-						.addComponent(tglbtnFrameToggle, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
+						.addComponent(tglbtnFrameToggle, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE))
 					.addGap(6)
 					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
 					.addGap(8))
@@ -217,34 +221,46 @@ public class ApplicationWindow {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
 
 		JLabel lblDragdropShapes = new JLabel("Drag&Drop Shapes:");
+		lblDragdropShapes.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dragShapesPanel.add(lblDragdropShapes, "2, 2");
 
 		lblCircle = new JLabel("Circle");
 		lblCircle.setTransferHandler(new TransferHandler("text"));
 		lblCircle.addMouseListener(new DragMouseAdapter());
+		
+		JSeparator separator_1 = new JSeparator();
+		dragShapesPanel.add(separator_1, "2, 4");
 
-		dragShapesPanel.add(lblCircle, "2, 4, center, default");
+		dragShapesPanel.add(lblCircle, "2, 6, center, default");
 
 		JLabel lblSquare = new JLabel("Square");
 		lblSquare.setTransferHandler(new TransferHandler("text"));
 		lblSquare.addMouseListener(new DragMouseAdapter());
-		dragShapesPanel.add(lblSquare, "2, 6, center, default");
+		dragShapesPanel.add(lblSquare, "2, 8, center, default");
 
 		JLabel lblFilleCircle = new JLabel("Filled Circle");
 		lblFilleCircle.setTransferHandler(new TransferHandler("text"));
 		lblFilleCircle.addMouseListener(new DragMouseAdapter());
-		dragShapesPanel.add(lblFilleCircle, "2, 8, center, default");
+		dragShapesPanel.add(lblFilleCircle, "2, 10, center, default");
 
 		JLabel lblFilledRectangle = new JLabel("Filled Square");
 		lblFilledRectangle.setTransferHandler(new TransferHandler("text"));
 		lblFilledRectangle.addMouseListener(new DragMouseAdapter());
-		dragShapesPanel.add(lblFilledRectangle, "2, 10, center, default");
+		dragShapesPanel.add(lblFilledRectangle, "2, 12, center, default");
 		
-		JLabel lblSize = new JLabel("Size:");
-		dragShapesPanel.add(lblSize, "2, 12, center, default");
+		JSeparator separator = new JSeparator();
+		dragShapesPanel.add(separator, "2, 14");
+		
+		JLabel lblSize = new JLabel("Shape Size:");
+		lblSize.setFont(new Font("Tahoma", Font.BOLD, 11));
+		dragShapesPanel.add(lblSize, "2, 16, center, default");
 		
 		JSpinner spinner = new JSpinner();
 		spinner.addChangeListener(new ChangeListener() {
@@ -253,7 +269,7 @@ public class ApplicationWindow {
 			}
 		});
 		spinner.setModel(new SpinnerNumberModel(new Integer(1), new Integer(0), null, new Integer(10)));
-		dragShapesPanel.add(spinner, "2, 14");
+		dragShapesPanel.add(spinner, "2, 18");
 		colorPanel.setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC, FormFactory.DEFAULT_COLSPEC,
 				FormFactory.RELATED_GAP_COLSPEC,
