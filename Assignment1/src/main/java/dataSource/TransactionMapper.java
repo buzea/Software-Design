@@ -49,7 +49,12 @@ public class TransactionMapper extends Mapper {
 
 	private int generateId() throws SQLException {
 		String sql = "SELECT max(idtransaction) FROM transaction;";
-		return getId(stmt.executeQuery(sql), sql);
+		ResultSet rs = stmt.executeQuery(sql);
+		int id = 0;
+		if (rs.next()) {
+			id = rs.getInt(1) + 1;
+		}
+		return id;
 
 	}
 
