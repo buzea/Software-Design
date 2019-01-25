@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <BooksOutOfStock>
-  <Book>
-    <title>Baltagul</title>
-    <author>M. Sadoveanu</author>
-    <year>1930</year>
-    <genre>Crime Investigation</genre>
-    <quantity>0</quantity>
-    <price>12.99</price>
-  </Book>
-  <Book>
-    <title>Iona</title>
-    <author>Marin Sorescu</author>
-    <year>1908</year>
-    <genre>Fiction</genre>
-    <quantity>0</quantity>
-    <price>9.99</price>
-  </Book>
+    <Book>
+        <title>Baltagul</title>
+        <author>M. Sadoveanu</author>
+        <year>1930</year>
+        <genre>Crime Investigation</genre>
+        <quantity>0</quantity>
+        <price>12.99</price>
+    </Book>
+    <Book>
+        <title>Iona</title>
+        <author>Marin Sorescu</author>
+        <year>1908</year>
+        <genre>Fiction</genre>
+        <quantity>0</quantity>
+        <price>9.99</price>
+    </Book>
 </BooksOutOfStock>
