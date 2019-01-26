@@ -1,47 +1,25 @@
-package composite;
+package ro.utcluj.composite;
 
-import iterators.NullIterator;
+import ro.utcluj.iterators.NullIterator;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Point;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class FreeDrawing extends Shape {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3798188722466753701L;
-	private List<Point> points;
-	private Color color;
+public class FreeDrawing implements Shape {
+
+	private static final long        serialVersionUID = 3798188722466753701L;
+	private final        List<Point> points;
+	private final        Color       color;
 
 	public FreeDrawing(Color color) {
-		super();
 		this.color = color;
-		points = new ArrayList<Point>();
+		points = new ArrayList<>();
 	}
 
-	public boolean add(Point e) {
-		return points.add(e);
-	}
-
-	public void clear() {
-		points.clear();
-	}
-
-	public Point remove(int index) {
-		return points.remove(index);
-	}
-
-	public boolean remove(Object o) {
-		return points.remove(o);
-	}
-
-	@Override
-	public Iterator<Shape> createIterator() {
-		return new NullIterator<Shape>();
+	public void add(Point e) {
+		points.add(e);
 	}
 
 	@Override
@@ -54,7 +32,11 @@ public class FreeDrawing extends Shape {
 				prev = p;
 			}
 		}
+	}
 
+	@Override
+	public Iterator<Shape> createIterator() {
+		return new NullIterator<>();
 	}
 
 	@Override
@@ -83,5 +65,4 @@ public class FreeDrawing extends Shape {
 
 		return boundary;
 	}
-
 }

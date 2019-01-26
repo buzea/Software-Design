@@ -1,4 +1,4 @@
-package iterators;
+package ro.utcluj.iterators;
 
 import java.util.Iterator;
 
@@ -13,5 +13,4 @@ public class NullIterator<E> implements Iterator<E> {
 	public E next() {
 		return null;
 	}
-	
 }

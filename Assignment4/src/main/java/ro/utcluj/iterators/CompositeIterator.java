@@ -1,56 +1,50 @@
-package iterators;
+package ro.utcluj.iterators;
+
+import ro.utcluj.composite.ComplexShape;
+import ro.utcluj.composite.Shape;
 
 import java.util.Iterator;
 import java.util.Stack;
 
-import composite.ComplexShape;
-import composite.Shape;
-
 public class CompositeIterator<E> implements Iterator<E> {
-	private Stack<Iterator<Shape>> stack;
-	
+	private final Stack<Iterator<Shape>> stack;
+
 	public CompositeIterator() {
-		stack = new Stack<Iterator<Shape>>();
+		stack = new Stack<>();
 	}
+
 	public CompositeIterator(Iterator<Shape> iterator) {
-		stack = new Stack<Iterator<Shape>>();
+		this();
 		stack.push(iterator);
 	}
-	
-	
-	
 
 	@Override
 	public boolean hasNext() {
-		if(stack.empty())
+		if (stack.empty()) {
 			return false;
-		else{
-			Iterator<Shape> iterator = stack.peek();
-			if(!iterator.hasNext()){
-				stack.pop();
-				return hasNext();
-			}else{
-				return true;
-			}
+		}
+
+		Iterator<Shape> iterator = stack.peek();
+		if (iterator.hasNext()) {
+			return true;
+		} else {
+			stack.pop();
+			return hasNext();
 		}
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public E next() {
-		if(hasNext()){
+		if (hasNext()) {
 			Iterator<Shape> iterator = stack.peek();
 			Shape shape = iterator.next();
-			if(shape instanceof ComplexShape){
-				ComplexShape complexShape =(ComplexShape) shape;
+			if (shape instanceof ComplexShape) {
+				ComplexShape complexShape = (ComplexShape) shape;
 				stack.push(complexShape.createIterator());
 			}
-			
 			return (E) shape;
-			
-			
 		}
 		return null;
 	}
-
 }

@@ -3,25 +3,22 @@
  * and open the template in the editor.
  */
 
-package composite;
+package ro.utcluj.composite;
 
-import iterators.CompositeIterator;
+import ro.utcluj.iterators.CompositeIterator;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class ComplexShape extends Shape {
+public class ComplexShape implements Shape {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 43331098905157714L;
-	private List<Shape> list;
+	private static final long        serialVersionUID = 43331098905157714L;
+	private final        List<Shape> list;
 
 	public ComplexShape() {
-		list = new ArrayList<Shape>();
+		list = new ArrayList<>();
 	}
 
 	@Override
@@ -32,29 +29,13 @@ public class ComplexShape extends Shape {
 	}
 
 	@Override
+	public Iterator<Shape> createIterator() {
+		return new CompositeIterator<>(list.iterator());
+	}
+
+	@Override
 	public void add(Shape shape) {
 		list.add(shape);
-	}
-
-	@Override
-	public void remove(Shape shape) {
-		list.remove(shape);
-
-	}
-
-	@Override
-	public Shape getChild(int number) {
-		return list.get(number);
-
-	}
-
-	@Override
-	public Iterator<Shape> createIterator() {
-		return new CompositeIterator<Shape>(list.iterator());
-	}
-
-	public void clear() {
-		list.clear();
 	}
 
 	@Override
@@ -68,7 +49,7 @@ public class ComplexShape extends Shape {
 		while (i.hasNext()) {
 			Shape temp = i.next();
 			Boundary currentBoundary = temp.getBoundaries();
-			
+
 			if (boundary.getX1() > currentBoundary.getX1()) {
 				boundary.setX1(currentBoundary.getX1());
 			}
@@ -85,4 +66,7 @@ public class ComplexShape extends Shape {
 		return boundary;
 	}
 
+	public void clear() {
+		list.clear();
+	}
 }
