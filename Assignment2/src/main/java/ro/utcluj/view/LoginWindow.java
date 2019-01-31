@@ -7,24 +7,18 @@ import com.jgoodies.forms.layout.RowSpec;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-
 
 public class LoginWindow {
 
 	private JFrame         frmLibraryLogin;
 	private JTextField     usernameField;
 	private JPasswordField passwordField;
-
-	private final ActionListener actionLisntener;
-
+	private JButton btnLogin;
 
 	/**
 	 * Create the application.
 	 */
-	public LoginWindow(ActionListener actions) {
-		this.actionLisntener = actions;
-
+	public LoginWindow() {
 		initialize();
 	}
 
@@ -74,8 +68,7 @@ public class LoginWindow {
 		passwordField.setText("root");
 		panel.add(passwordField, "8, 10, fill, default");
 
-		JButton btnLogin = new JButton("Login");
-		btnLogin.addActionListener(actionLisntener);
+		btnLogin = new JButton("Login");
 
 		panel.add(btnLogin, "4, 12");
 	}
@@ -121,5 +114,7 @@ public class LoginWindow {
 		this.frmLibraryLogin = frmLibraryLogin;
 	}
 
-
+	public JButton getBtnLogin() {
+		return btnLogin;
+	}
 }

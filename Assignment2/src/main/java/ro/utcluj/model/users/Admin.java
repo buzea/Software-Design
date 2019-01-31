@@ -19,7 +19,7 @@ import java.awt.*;
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
-
+import java.util.Objects;
 
 public class Admin extends User {
 
@@ -96,7 +96,7 @@ public class Admin extends User {
 	// read
 	public Object[][] getUserMatrix() {
 		Object[][] result = null;
-		List<User> list = new LinkedList<User>();
+		List<User> list = new LinkedList<>();
 		try {
 			File fXmlFile = new File("Users.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -262,7 +262,7 @@ public class Admin extends User {
 			report = ReportFactory.createReport(ReportType.TEXT);
 		}
 
-		return report.generateReport();
+		return Objects.requireNonNull(report).generateReport();
 
 	}
 
@@ -278,7 +278,7 @@ public class Admin extends User {
 				Desktop.getDesktop().open(file);
 				// Desktop.getDesktop().edit(file);
 				return true;
-			} catch (Exception e1) {
+			} catch (Exception ignored) {
 
 			}
 		}

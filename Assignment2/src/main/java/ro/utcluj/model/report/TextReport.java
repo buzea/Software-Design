@@ -30,7 +30,7 @@ public class TextReport implements Report {
 			}
 			bw.close();
 			return true;
-		} catch (Exception e) {
+		} catch (Exception ignored) {
 
 		}
 		return false;

@@ -23,7 +23,7 @@ public class Library extends Observable {
 	private        List<Book> books;
 
 	private Library() {
-		books = new LinkedList<Book>();
+		books = new LinkedList<>();
 		readBooksFromFile();
 	}
 

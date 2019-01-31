@@ -27,7 +27,7 @@ class AdminControl {
 				if (admin.createUser(username, password, type))
 					JOptionPane.showMessageDialog(window.getFrmLibraryAdmin(), "User Created");
 				else
-					JOptionPane.showMessageDialog(window.getFrmLibraryAdmin(), "User NOT Created", "ERROR", 0);
+					JOptionPane.showMessageDialog(window.getFrmLibraryAdmin(), "User NOT Created", "ERROR", JOptionPane.ERROR_MESSAGE);
 				window.getBtnShowPassword().doClick();
 				return;
 			}
@@ -37,7 +37,7 @@ class AdminControl {
 				if (admin.deleteUser(username, password))
 					JOptionPane.showMessageDialog(window.getFrmLibraryAdmin(), "User Deleted");
 				else
-					JOptionPane.showMessageDialog(window.getFrmLibraryAdmin(), "User Could NOT Be Deleted!", "ERROR", 0);
+					JOptionPane.showMessageDialog(window.getFrmLibraryAdmin(), "User Could NOT Be Deleted!", "ERROR", JOptionPane.ERROR_MESSAGE);
 				window.getBtnShowPassword().doClick();
 				return;
 			}
@@ -47,7 +47,7 @@ class AdminControl {
 				if (admin.updatePassword(username, password))
 					JOptionPane.showMessageDialog(window.getFrmLibraryAdmin(), "Password Updated");
 				else
-					JOptionPane.showMessageDialog(window.getFrmLibraryAdmin(), "Password Could NOT Be Updated!", "ERROR", 0);
+					JOptionPane.showMessageDialog(window.getFrmLibraryAdmin(), "Password Could NOT Be Updated!", "ERROR", JOptionPane.ERROR_MESSAGE);
 				window.getBtnShowPassword().doClick();
 				return;
 			}
@@ -77,7 +77,7 @@ class AdminControl {
 				return;
 			}
 			if (e.getSource().equals(window.getBtnUpdateBooks())) {
-				List<Book> books = new LinkedList<Book>();
+				List<Book> books = new LinkedList<>();
 				JTable table = window.getTable();
 
 				table.clearSelection();
@@ -113,7 +113,7 @@ class AdminControl {
 					if (title.equalsIgnoreCase("Tile") || author.equalsIgnoreCase("Author")
 							|| genre.equalsIgnoreCase("Genre")) {
 						JOptionPane.showMessageDialog(window.getFrmLibraryAdmin(),
-								"Please Update Generic Fields In The Table!", "Row not Updated", 0);
+								"Please Update Generic Fields In The Table!", "Row not Updated", JOptionPane.ERROR_MESSAGE);
 					} else {
 						Book temp = new Book(title, author, genre, year, stock, price);
 						books.add(temp);
@@ -134,14 +134,14 @@ class AdminControl {
 				if (admin.generateReport(type)) {
 					JOptionPane.showMessageDialog(window.getFrmLibraryAdmin(), "Report Generated");
 				} else {
-					JOptionPane.showMessageDialog(window.getFrmLibraryAdmin(), "Report NOT Generated", "Error", 0);
+					JOptionPane.showMessageDialog(window.getFrmLibraryAdmin(), "Report NOT Generated", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 				return;
 			}
 			if (e.getSource().equals(window.getBtnOpenReport())) {
 				int type = window.getReportTypeComboBox().getSelectedIndex();
 				if (!admin.openReport(type)) {
-					JOptionPane.showMessageDialog(window.getFrmLibraryAdmin(), "Cannot open Report!", "Error", 0);
+					JOptionPane.showMessageDialog(window.getFrmLibraryAdmin(), "Cannot open Report!", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 				return;
 			}

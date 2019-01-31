@@ -26,21 +26,21 @@ public class AdminWindow implements Observer {
 	private              JTextField        passwordTextField;
 	private              JTextField        usernameTextField;
 	private              JTable            table;
-	private              JButton           btnInsertBook;
-	private              JButton           btnUpdateBooks;
-	private              JButton           btnDeleteBook;
-	private              JButton           btnReloadTable;
-	private              JButton           btnCreateUser;
-	private              JButton           btnUpdatePassword;
-	private              JButton           btnDeleteUser;
-	private              JButton           btnShowPassword;
-	private              JButton           btnGenerateReport;
-	private              JButton           btnOpenReport;
-	private              Library           library;
-	private              ActionListener    actionListener;
-	private              JComboBox<String> reportTypeComboBox;
-	private              JTable            userTable;
-	private              JComboBox<String> userTypeComboBox;
+	private       JButton           btnInsertBook;
+	private       JButton           btnUpdateBooks;
+	private       JButton           btnDeleteBook;
+	private       JButton           btnReloadTable;
+	private       JButton           btnCreateUser;
+	private       JButton           btnUpdatePassword;
+	private       JButton           btnDeleteUser;
+	private       JButton           btnShowPassword;
+	private       JButton           btnGenerateReport;
+	private       JButton           btnOpenReport;
+	private final Library           library;
+	private final ActionListener    actionListener;
+	private       JComboBox<String> reportTypeComboBox;
+	private       JTable            userTable;
+	private       JComboBox<String> userTypeComboBox;
 
 
 	/**
@@ -74,11 +74,7 @@ public class AdminWindow implements Observer {
 		menuBar.add(mnFile);
 
 		JMenuItem mntmExit = new JMenuItem("Exit");
-		mntmExit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
+		mntmExit.addActionListener(e -> System.exit(0));
 		mntmExit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.ALT_MASK));
 		mnFile.add(mntmExit);
 		JTabbedPane tabbedPane = new JTabbedPane();
@@ -272,8 +268,8 @@ public class AdminWindow implements Observer {
 		JLabel lblType_1 = new JLabel("Type:");
 		panel_3.add(lblType_1, "2, 6, right, default");
 
-		userTypeComboBox = new JComboBox<String>();
-		userTypeComboBox.setModel(new DefaultComboBoxModel<String>(new String[]{"Employee", "Admin"}));
+		userTypeComboBox = new JComboBox<>();
+		userTypeComboBox.setModel(new DefaultComboBoxModel<>(new String[]{"Employee", "Admin"}));
 		userTypeComboBox.setSelectedIndex(0);
 		panel_3.add(userTypeComboBox, "4, 6, fill, default");
 		userPanel.setLayout(gl_userPanel);
@@ -298,8 +294,8 @@ public class AdminWindow implements Observer {
 		JLabel lblType = new JLabel("Type:");
 		panel_2.add(lblType, "2, 2, right, default");
 
-		reportTypeComboBox = new JComboBox<String>();
-		reportTypeComboBox.setModel(new DefaultComboBoxModel<String>(new String[]{"Text", "XML"}));
+		reportTypeComboBox = new JComboBox<>();
+		reportTypeComboBox.setModel(new DefaultComboBoxModel<>(new String[]{"Text", "XML"}));
 		panel_2.add(reportTypeComboBox, "4, 2, fill, default");
 
 		btnGenerateReport = new JButton("Generate Report");
@@ -335,120 +331,52 @@ public class AdminWindow implements Observer {
 		return passwordTextField;
 	}
 
-	public void setPasswordTextField(JTextField passwordTextField) {
-		this.passwordTextField = passwordTextField;
-	}
-
 	public JTextField getUsernameTextField() {
 		return usernameTextField;
-	}
-
-	public void setUsernameTextField(JTextField usernameTextField) {
-		this.usernameTextField = usernameTextField;
 	}
 
 	public JTable getTable() {
 		return table;
 	}
 
-	public void setTable(JTable table) {
-		this.table = table;
-	}
-
 	public JButton getBtnInsertBook() {
 		return btnInsertBook;
-	}
-
-	public void setBtnInsertBook(JButton btnInsertBook) {
-		this.btnInsertBook = btnInsertBook;
 	}
 
 	public JButton getBtnUpdateBooks() {
 		return btnUpdateBooks;
 	}
 
-	public void setBtnUpdateBooks(JButton btnUpdateBooks) {
-		this.btnUpdateBooks = btnUpdateBooks;
-	}
-
 	public JButton getBtnDeleteBook() {
 		return btnDeleteBook;
-	}
-
-	public void setBtnDeleteBook(JButton btnDeleteBook) {
-		this.btnDeleteBook = btnDeleteBook;
 	}
 
 	public JButton getBtnReloadTable() {
 		return btnReloadTable;
 	}
 
-	public void setBtnReloadTable(JButton btnReloadTable) {
-		this.btnReloadTable = btnReloadTable;
-	}
-
 	public JButton getBtnCreateUser() {
 		return btnCreateUser;
-	}
-
-	public void setBtnCreateUser(JButton btnCreateUser) {
-		this.btnCreateUser = btnCreateUser;
 	}
 
 	public JButton getBtnUpdatePassword() {
 		return btnUpdatePassword;
 	}
 
-	public void setBtnUpdatePassword(JButton btnUpdatePassword) {
-		this.btnUpdatePassword = btnUpdatePassword;
-	}
-
 	public JButton getBtnDeleteUser() {
 		return btnDeleteUser;
-	}
-
-	public void setBtnDeleteUser(JButton btnDeleteUser) {
-		this.btnDeleteUser = btnDeleteUser;
 	}
 
 	public JButton getBtnShowPassword() {
 		return btnShowPassword;
 	}
 
-	public void setBtnShowPassword(JButton btnShowPassword) {
-		this.btnShowPassword = btnShowPassword;
-	}
-
 	public JButton getBtnGenerateReport() {
 		return btnGenerateReport;
 	}
 
-	public void setBtnGenerateReport(JButton btnGenerateReport) {
-		this.btnGenerateReport = btnGenerateReport;
-	}
-
 	public JButton getBtnOpenReport() {
 		return btnOpenReport;
-	}
-
-	public void setBtnOpenReport(JButton btnOpenReport) {
-		this.btnOpenReport = btnOpenReport;
-	}
-
-	public Library getLibrary() {
-		return library;
-	}
-
-	public void setLibrary(Library library) {
-		this.library = library;
-	}
-
-	public ActionListener getActionListener() {
-		return actionListener;
-	}
-
-	public void setActionListener(ActionListener actionListener) {
-		this.actionListener = actionListener;
 	}
 
 	public JComboBox<String> getReportTypeComboBox() {

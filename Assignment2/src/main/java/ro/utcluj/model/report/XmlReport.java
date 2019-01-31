@@ -51,13 +51,7 @@ public class XmlReport implements Report {
 
 
 			return true;
-		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (TransformerConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (TransformerException e) {
+		} catch (ParserConfigurationException | TransformerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

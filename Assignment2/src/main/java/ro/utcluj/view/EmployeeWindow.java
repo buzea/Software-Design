@@ -1,6 +1,5 @@
 package ro.utcluj.view;
 
-
 import ro.utcluj.model.library.Library;
 
 import javax.swing.*;
@@ -8,41 +7,31 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.util.Observable;
 import java.util.Observer;
 
-
 public class EmployeeWindow implements Observer {
 
-	private static final boolean        isDebug = false;
-	private              JFrame         frmLibraryEmployee;
-	private              JTable         table;
-	private              JTextField     textField;
-	private              JButton        btnListAllBooks;
-	private              JButton        btnSearchByTitle;
-	private              JButton        btnSearchByAuthor;
-	private              JButton        btnSearchByYear;
-	private              JButton        btnSell;
-	private              Library        library;
-	private              ActionListener actionListener;
-	private              JSpinner       spinner;
+	public static final  String[]   COLUMN_NAMES = {"Title", "Author", "Genre", "Year", "Price", "Stock"};
+	private static final boolean    isDebug      = false;
+	private              JFrame     frmLibraryEmployee;
+	private              JTable     table;
+	private              JTextField textField;
+	private              JButton    btnListAllBooks;
+	private              JButton    btnSearchByTitle;
+	private              JButton    btnSearchByAuthor;
+	private              JButton    btnSearchByYear;
+	private              JButton    btnSell;
+	private              JSpinner   spinner;
+	private              Library    library;
 
-
-	/**
-	 * Create the application.
-	 */
-
-	public EmployeeWindow(Library library, ActionListener listener) {
+	public EmployeeWindow(Library library) {
 		this.library = library;
-		this.actionListener = listener;
 		this.library.addObserver(this);
 		initialize();
 		frmLibraryEmployee.setVisible(true);
-
 	}
 
 	/**
@@ -50,8 +39,7 @@ public class EmployeeWindow implements Observer {
 	 */
 	private void initialize() {
 		frmLibraryEmployee = new JFrame();
-		frmLibraryEmployee.setIconImage(Toolkit.getDefaultToolkit().getImage(
-				EmployeeWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/computer.gif")));
+		frmLibraryEmployee.setIconImage(Toolkit.getDefaultToolkit().getImage(EmployeeWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/computer.gif")));
 		frmLibraryEmployee.setTitle("Library Employee");
 		frmLibraryEmployee.setBounds(100, 100, 600, 350);
 		frmLibraryEmployee.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -60,22 +48,8 @@ public class EmployeeWindow implements Observer {
 
 		JPanel commandPanel = new JPanel();
 		GroupLayout groupLayout = new GroupLayout(frmLibraryEmployee.getContentPane());
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(
-				Alignment.LEADING,
-				groupLayout.createSequentialGroup().addContainerGap()
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addComponent(commandPanel, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
-						.addGap(11)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(
-				groupLayout
-						.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(
-								groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(commandPanel, GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
-										.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE))
-						.addContainerGap()));
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(Alignment.LEADING, groupLayout.createSequentialGroup().addContainerGap().addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(commandPanel, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE).addGap(11)));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(commandPanel, GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)).addContainerGap()));
 		GridBagLayout gbl_commandPanel = new GridBagLayout();
 		gbl_commandPanel.columnWidths = new int[]{0, 0, 0};
 		gbl_commandPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
@@ -84,10 +58,7 @@ public class EmployeeWindow implements Observer {
 		commandPanel.setLayout(gbl_commandPanel);
 
 		btnListAllBooks = new JButton("List All Books");
-		btnListAllBooks.addActionListener(actionListener);
-		GridBagConstraints gbc_btnListAllBooks = new GridBagConstraints();
-		gbc_btnListAllBooks.insets = new Insets(0, 0, 5, 0);
-		gbc_btnListAllBooks.gridx = 1;
+		GridBagConstraints gbc_btnListAllBooks = createGridConstraints();
 		gbc_btnListAllBooks.gridy = 0;
 		commandPanel.add(btnListAllBooks, gbc_btnListAllBooks);
 
@@ -110,26 +81,17 @@ public class EmployeeWindow implements Observer {
 		textField.setColumns(10);
 
 		btnSearchByTitle = new JButton("Search By Title");
-		btnSearchByTitle.addActionListener(actionListener);
-		GridBagConstraints gbc_btnSearchByTitle = new GridBagConstraints();
-		gbc_btnSearchByTitle.insets = new Insets(0, 0, 5, 0);
-		gbc_btnSearchByTitle.gridx = 1;
+		GridBagConstraints gbc_btnSearchByTitle = createGridConstraints();
 		gbc_btnSearchByTitle.gridy = 2;
 		commandPanel.add(btnSearchByTitle, gbc_btnSearchByTitle);
 
 		btnSearchByAuthor = new JButton("Search By Author");
-		btnSearchByAuthor.addActionListener(actionListener);
-		GridBagConstraints gbc_btnSearchByAuthor = new GridBagConstraints();
-		gbc_btnSearchByAuthor.insets = new Insets(0, 0, 5, 0);
-		gbc_btnSearchByAuthor.gridx = 1;
+		GridBagConstraints gbc_btnSearchByAuthor = createGridConstraints();
 		gbc_btnSearchByAuthor.gridy = 3;
 		commandPanel.add(btnSearchByAuthor, gbc_btnSearchByAuthor);
 
 		btnSearchByYear = new JButton("Search By Year");
-		btnSearchByYear.addActionListener(actionListener);
-		GridBagConstraints gbc_btnSearchByYear = new GridBagConstraints();
-		gbc_btnSearchByYear.insets = new Insets(0, 0, 5, 0);
-		gbc_btnSearchByYear.gridx = 1;
+		GridBagConstraints gbc_btnSearchByYear = createGridConstraints();
 		gbc_btnSearchByYear.gridy = 4;
 		commandPanel.add(btnSearchByYear, gbc_btnSearchByYear);
 
@@ -142,7 +104,7 @@ public class EmployeeWindow implements Observer {
 		commandPanel.add(lblQuantity, gbc_lblQuantity);
 
 		spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		spinner.setModel(new SpinnerNumberModel(1, 1, null, 1));
 		GridBagConstraints gbc_spinner = new GridBagConstraints();
 		gbc_spinner.fill = GridBagConstraints.HORIZONTAL;
 		gbc_spinner.insets = new Insets(0, 0, 5, 0);
@@ -151,7 +113,6 @@ public class EmployeeWindow implements Observer {
 		commandPanel.add(spinner, gbc_spinner);
 
 		btnSell = new JButton("Sell");
-		btnSell.addActionListener(actionListener);
 		GridBagConstraints gbc_btnSell = new GridBagConstraints();
 		gbc_btnSell.gridx = 1;
 		gbc_btnSell.gridy = 6;
@@ -159,34 +120,12 @@ public class EmployeeWindow implements Observer {
 
 		table = new JTable();
 		if (isDebug) {
-			table.setModel(new DefaultTableModel(new Object[][]{{null, null, null, null, null, null},
-					{null, null, null, null, null, null}, {null, null, null, null, null, null},
-					{null, null, null, null, null, null}, {null, null, null, null, null, null},
-					{null, null, null, null, null, null},}, new String[]{"Title", "Author", "Genre", "Year",
-					"Price", "Stock"}));
+			table.setModel(new DefaultTableModel(new Object[][]{{null, null, null, null, null, null}, {null, null, null, null, null, null}, {null, null, null, null, null, null}, {null, null, null, null, null, null}, {null, null, null, null, null, null}, {null, null, null, null, null, null},}, COLUMN_NAMES));
 		} else {
-			table.setModel(new DefaultTableModel(library.toObjectMatrix(), new String[]{"Title", "Author", "Genre",
-					"Year", "Price", "Stock"}) {
-				/**
-				 *
-				 */
-				private static final long serialVersionUID = 5101341905717017745L;
-
-				@Override
-				public boolean isCellEditable(int row, int column) {
-					// all cells false
-					return false;
-				}
-			});
-
+			table.setModel(setTableData());
 		}
 
-		table.getColumnModel().getColumn(0).setPreferredWidth(80);
-		table.getColumnModel().getColumn(1).setPreferredWidth(70);
-		table.getColumnModel().getColumn(2).setPreferredWidth(70);
-		table.getColumnModel().getColumn(3).setPreferredWidth(45);
-		table.getColumnModel().getColumn(4).setPreferredWidth(45);
-		table.getColumnModel().getColumn(5).setPreferredWidth(45);
+		setColumnWidth();
 		scrollPane.setViewportView(table);
 		frmLibraryEmployee.getContentPane().setLayout(groupLayout);
 
@@ -198,38 +137,42 @@ public class EmployeeWindow implements Observer {
 		menuBar.add(mnFile);
 
 		JMenuItem mntmExit = new JMenuItem("Exit");
-		mntmExit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
+		mntmExit.addActionListener(e -> System.exit(0));
 		mntmExit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.ALT_MASK));
 		mnFile.add(mntmExit);
-
 	}
 
-	@Override
-	public void update(Observable o, Object arg) {
-		table.setModel(new DefaultTableModel(library.toObjectMatrix(), new String[]{"Title", "Author", "Genre",
-				"Year", "Price", "Stock"}) {
-			/**
-			 *
-			 */
-			private static final long serialVersionUID = 5101341905717017745L;
+	private DefaultTableModel setTableData() {
+		return new DefaultTableModel(library.toObjectMatrix(), COLUMN_NAMES) {
 
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				// all cells false
 				return false;
 			}
-		});
+		};
+	}
+
+	private GridBagConstraints createGridConstraints() {
+		GridBagConstraints gbc_btnSearchByYear = new GridBagConstraints();
+		gbc_btnSearchByYear.insets = new Insets(0, 0, 5, 0);
+		gbc_btnSearchByYear.gridx = 1;
+		return gbc_btnSearchByYear;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		table.setModel(setTableData());
+		setColumnWidth();
+	}
+
+	private void setColumnWidth() {
 		table.getColumnModel().getColumn(0).setPreferredWidth(80);
 		table.getColumnModel().getColumn(1).setPreferredWidth(70);
 		table.getColumnModel().getColumn(2).setPreferredWidth(70);
 		table.getColumnModel().getColumn(3).setPreferredWidth(45);
 		table.getColumnModel().getColumn(4).setPreferredWidth(45);
 		table.getColumnModel().getColumn(5).setPreferredWidth(45);
-
 	}
 
 	public JFrame getFrmLibraryEmployee() {
@@ -246,12 +189,7 @@ public class EmployeeWindow implements Observer {
 
 	public void setTable(JTable mTable) {
 		this.table = mTable;
-		table.getColumnModel().getColumn(0).setPreferredWidth(80);
-		table.getColumnModel().getColumn(1).setPreferredWidth(70);
-		table.getColumnModel().getColumn(2).setPreferredWidth(70);
-		table.getColumnModel().getColumn(3).setPreferredWidth(45);
-		table.getColumnModel().getColumn(4).setPreferredWidth(45);
-		table.getColumnModel().getColumn(5).setPreferredWidth(45);
+		setColumnWidth();
 	}
 
 	public JTextField getTextField() {
@@ -310,14 +248,6 @@ public class EmployeeWindow implements Observer {
 		this.library = library;
 	}
 
-	public ActionListener getActionListener() {
-		return actionListener;
-	}
-
-	public void setActionListener(ActionListener actionListener) {
-		this.actionListener = actionListener;
-	}
-
 	public JSpinner getSpinner() {
 		return spinner;
 	}
@@ -325,5 +255,4 @@ public class EmployeeWindow implements Observer {
 	public void setSpinner(JSpinner spinner) {
 		this.spinner = spinner;
 	}
-
 }

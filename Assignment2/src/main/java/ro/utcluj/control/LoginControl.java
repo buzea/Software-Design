@@ -8,13 +8,25 @@ import javax.swing.*;
 
 public class LoginControl {
 
-	private LoginWindow loginWindow;
+	private final LoginWindow loginWindow;
 
 	public LoginControl() {
-		loginWindow = new LoginWindow(e -> {
+		loginWindow = new LoginWindow();
+	}
+
+	public void start() {
+		bindAction();
+		loginWindow.start();
+	}
+
+	private void bindAction() {
+		loginWindow.getBtnLogin().addActionListener(e -> {
 			String password = new String(loginWindow.getPasswordField().getPassword());
 			String username = loginWindow.getUsernameField().getText();
 			User user = User.login(username, password);
+			/**
+			 * Routing in the Controller is allowed
+			 */
 			if (user != null) {
 				if (user.getType() == User.Type.ADMIN)
 					new AdminControl((Admin) user);
@@ -22,12 +34,8 @@ public class LoginControl {
 					new EmployeeControl();
 
 			} else {
-				JOptionPane.showMessageDialog(loginWindow.getFrmLibraryLogin(), "Invalid Login Credentials!", "Autentification ERROR", 0);
+				JOptionPane.showMessageDialog(loginWindow.getFrmLibraryLogin(), "Invalid Login Credentials!", "Authentication ERROR", JOptionPane.ERROR_MESSAGE);
 			}
 		});
-	}
-
-	public void start() {
-		loginWindow.start();
 	}
 }
