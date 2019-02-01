@@ -15,7 +15,7 @@ import java.util.Observer;
 public class EmployeeWindow implements Observer {
 
     public static final  String[]   COLUMN_NAMES = {"Title", "Author", "Genre", "Year", "Price", "Stock"};
-    private static final boolean    isDebug = false;
+    private static final boolean    isDebug      = false;
     private              JFrame     frmLibraryEmployee;
     private              JTable     table;
     private              JTextField textField;
@@ -122,7 +122,7 @@ public class EmployeeWindow implements Observer {
         if (isDebug) {
             table.setModel(new DefaultTableModel(new Object[][]{{null, null, null, null, null, null}, {null, null, null, null, null, null}, {null, null, null, null, null, null}, {null, null, null, null, null, null}, {null, null, null, null, null, null}, {null, null, null, null, null, null},}, COLUMN_NAMES));
         } else {
-            table.setModel(setTableData());
+            table.setModel(createTabularData(library));
         }
 
         setColumnWidth();
@@ -142,7 +142,7 @@ public class EmployeeWindow implements Observer {
         mnFile.add(mntmExit);
     }
 
-    private DefaultTableModel setTableData() {
+    private DefaultTableModel createTabularData(Library library) {
         //NOTE: creating a new DefaultTableModel instance every time we receive new data will have a great performance penalty for a real life app
         return new DefaultTableModel(library.toObjectMatrix(), COLUMN_NAMES) {
 
@@ -163,7 +163,7 @@ public class EmployeeWindow implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        table.setModel(setTableData());
+        table.setModel(createTabularData((Library) o));
         setColumnWidth();
     }
 

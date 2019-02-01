@@ -50,4 +50,12 @@
         <quantity>18</quantity>
         <price>3.33</price>
     </Book>
+<Book>
+    <title>Clean Code</title>
+    <author>Uncle Bob</author>
+    <year>2018</year>
+    <genre>Coding</genre>
+    <quantity>500</quantity>
+    <price>20.0</price>
+  </Book>
 </library>
