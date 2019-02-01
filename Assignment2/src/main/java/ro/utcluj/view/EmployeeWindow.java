@@ -25,11 +25,8 @@ public class EmployeeWindow implements Observer {
     private              JButton    btnSearchByYear;
     private              JButton    btnSell;
     private              JSpinner   spinner;
-    private final        Library    library;
 
-    public EmployeeWindow(Library library) {
-        this.library = library;
-        this.library.addObserver(this);
+    public EmployeeWindow() {
         initialize();
         frmLibraryEmployee.setVisible(true);
     }
@@ -121,8 +118,6 @@ public class EmployeeWindow implements Observer {
         table = new JTable();
         if (isDebug) {
             table.setModel(new DefaultTableModel(new Object[][]{{null, null, null, null, null, null}, {null, null, null, null, null, null}, {null, null, null, null, null, null}, {null, null, null, null, null, null}, {null, null, null, null, null, null}, {null, null, null, null, null, null},}, COLUMN_NAMES));
-        } else {
-            table.setModel(createTabularData(library));
         }
 
         setColumnWidth();

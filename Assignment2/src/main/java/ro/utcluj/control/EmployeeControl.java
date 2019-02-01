@@ -8,68 +8,74 @@ import javax.swing.table.DefaultTableModel;
 
 class EmployeeControl {
 
-    private final EmployeeWindow window;
+    private final EmployeeWindow view;
     private final Library        library;
 
     public EmployeeControl() {
         library = Library.getInstance();
-        window = new EmployeeWindow(library);
+        view = new EmployeeWindow();
 
-        window.getBtnSell().addActionListener(event -> sell());
-        window.getBtnListAllBooks().addActionListener(e -> listAllBooks());
-        window.getBtnSearchByAuthor().addActionListener(e -> searchByAuthor());
-        window.getBtnSearchByTitle().addActionListener(e -> searchByTitle());
-        window.getBtnSearchByYear().addActionListener(e -> searchByYear());
+        view.update(library, null); // set initial data
+        library.addObserver(view);
 
-        window.getFrmLibraryEmployee().setVisible(true);
+        bindButtons();
+        view.getFrmLibraryEmployee().setVisible(true);
+    }
+
+    private void bindButtons() {
+        view.getBtnSell().addActionListener(event -> sell());
+        view.getBtnListAllBooks().addActionListener(e -> listAllBooks());
+        view.getBtnSearchByAuthor().addActionListener(e -> searchByAuthor());
+        view.getBtnSearchByTitle().addActionListener(e -> searchByTitle());
+        view.getBtnSearchByYear().addActionListener(e -> searchByYear());
     }
 
     private void searchByYear() {
-        JTable table = window.getTable();
+        JTable table = view.getTable();
         try {
-            int year = Integer.parseInt(window.getTextField().getText());
+            int year = Integer.parseInt(view.getTextField().getText());
             table.setModel(createTableModel(library.getBooksByYear(year)));
-            window.setTable(table);
+            view.setTable(table);
         } catch (Exception e1) {
-            JOptionPane.showMessageDialog(window.getFrmLibraryEmployee(), "Input must be integer!", "Year Error!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(view.getFrmLibraryEmployee(), "Input must be integer!", "Year Error!", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private void searchByTitle() {
-        JTable table = window.getTable();
-        String title = window.getTextField().getText();
+        JTable table = view.getTable();
+        String title = view.getTextField().getText();
         table.setModel(createTableModel(library.getBooksByTitle(title)));
-        window.setTable(table);
+        view.setTable(table);
     }
 
     private void searchByAuthor() {
-        JTable table = window.getTable();
-        String author = window.getTextField().getText();
+        JTable table = view.getTable();
+        String author = view.getTextField().getText();
         table.setModel(createTableModel(library.getBooksByAuthor(author)));
-        window.setTable(table);
+        view.setTable(table);
     }
 
     private void listAllBooks() {
-        JTable table = window.getTable();
+        JTable table = view.getTable();
         table.setModel(createTableModel(library.toObjectMatrix()));
-        window.setTable(table);
+        view.setTable(table);
     }
 
     private void sell() {
         try {
-            JTable table = window.getTable();
+            JTable table = view.getTable();
             int row = table.getSelectedRow();
             String title = (String) table.getValueAt(row, 0);
             String author = (String) table.getValueAt(row, 1);
             int year = ((int) table.getValueAt(row, 3));
 
-            int quantity = (int) window.getSpinner().getValue();
+            int quantity = (int) view.getSpinner().getValue();
 
             if (!library.sell(title, author, year, quantity)) {
-                JOptionPane.showMessageDialog(window.getFrmLibraryEmployee(), "An error occurred while processing the command!", "Error!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(view.getFrmLibraryEmployee(), "An error occurred while processing the command!", "Error!", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ee) {
-            JOptionPane.showMessageDialog(window.getFrmLibraryEmployee(), "Invalid Selection", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(view.getFrmLibraryEmployee(), "Invalid Selection", "Warning", JOptionPane.WARNING_MESSAGE);
         }
     }
 
