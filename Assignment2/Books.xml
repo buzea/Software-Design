@@ -13,7 +13,7 @@
         <author>J. R. R. Tolkien</author>
         <year>1937</year>
         <genre>Fiction</genre>
-        <quantity>200</quantity>
+        <quantity>198</quantity>
         <price>45.98</price>
     </Book>
 
@@ -30,7 +30,7 @@
         <author>J. R. R Tolkien</author>
         <year>1960</year>
         <genre>Fiction</genre>
-        <quantity>103</quantity>
+        <quantity>102</quantity>
         <price>100.71</price>
     </Book>
 
@@ -47,7 +47,7 @@
         <author>M. Sadoveanu</author>
         <year>1936</year>
         <genre>History</genre>
-        <quantity>20</quantity>
+        <quantity>18</quantity>
         <price>3.33</price>
     </Book>
 </library>

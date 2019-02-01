@@ -29,4 +29,8 @@
         <Username>Kinga</Username>
         <Password>Tora</Password>
     </User>
+<User type="employee">
+    <Username>vlady</Username>
+    <Password>UpdatedPassword</Password>
+  </User>
 </Personnel>

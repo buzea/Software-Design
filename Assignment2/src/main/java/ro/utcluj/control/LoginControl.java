@@ -24,10 +24,7 @@ public class LoginControl {
 			String password = new String(loginWindow.getPasswordField().getPassword());
 			String username = loginWindow.getUsernameField().getText();
 			User user = User.login(username, password);
-			/**
-			 * Routing in the Controller is allowed
-			 */
-			if (user != null) {
+            if (user != null) {
 				if (user.getType() == User.Type.ADMIN)
 					new AdminControl((Admin) user);
 				else

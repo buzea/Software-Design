@@ -254,12 +254,6 @@ public class Library extends Observable {
 		createBook(book);
 	}
 
-	/**
-	 * Persists the new added book in the xml file
-	 *
-	 * @param book
-	 * @return
-	 */
 	private void createBook(Book book) {
 		try {
 			File fXmlFile = new File("Books.xml");

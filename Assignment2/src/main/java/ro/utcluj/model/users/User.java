@@ -10,10 +10,10 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 
 public abstract class User {
-	private String username;
-	private String password;
+	private final String username;
+	private final String password;
 
-	private Type type;
+	private final Type type;
 
 
 	User(String username, String password, Type type) {
@@ -66,24 +66,12 @@ public abstract class User {
 		return username;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
 	String getPassword() {
 		return password;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public Type getType() {
 		return type;
-	}
-
-	public void setType(Type type) {
-		this.type = type;
 	}
 
 	public enum Type {
